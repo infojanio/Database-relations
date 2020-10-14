@@ -9,19 +9,28 @@ import {
 
 import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 
+@Entity('products')
 class Product {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   name: string;
 
+  @Column('decimal')
   price: number;
 
+  @Column('int')
   quantity: number;
 
-  order_products: OrdersProducts[];
+  // relacionamento                //retorno
+  // @OneToMany(() => OrdersProducts, order_products => order_products.product)
+  order_products: OrdersProducts[]; // um produto para vários pedidos
 
+  @CreateDateColumn()
   created_at: Date;
 
+  @UpdateDateColumn()
   updated_at: Date;
 }
 
