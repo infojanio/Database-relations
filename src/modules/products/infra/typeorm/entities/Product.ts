@@ -24,7 +24,7 @@ class Product {
   quantity: number;
 
   // relacionamento                //retorno
-  // @OneToMany(() => OrdersProducts, order_products => order_products.product)
+  @OneToMany(() => OrdersProducts, order_products => order_products.product)
   order_products: OrdersProducts[]; // um produto para vários pedidos
 
   @CreateDateColumn()

@@ -34,7 +34,7 @@ class ProductsRepository implements IProductsRepository {
   }
 
   public async findByName(name: string): Promise<Product | undefined> {
-    // Encontrar por nome
+    // Retorna produto quando encontrar por nome
     const product = await this.ormRepository.findOne({
       where: {
         name,
@@ -47,12 +47,12 @@ class ProductsRepository implements IProductsRepository {
     // Encontra todos por id existentes
     const productIds = products.map(product => product.id);
 
-    const productExists = await this.ormRepository.find({
+    const existentProducts = await this.ormRepository.find({
       where: {
         id: In(productIds),
       },
     });
-    return productExists;
+    return existentProducts;
   }
 
   // sugestão: fazer a melhoria no código para alterar apenas a quantidade, já que o método atualiza tudo

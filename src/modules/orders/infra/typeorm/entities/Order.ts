@@ -20,11 +20,16 @@ class Order {
   @JoinColumn({ name: 'customer_id' })
   customer: Customer; // várias orders pode ter um customer(vários pedidos pode ter um cliente)
 
-  // parei em 1:05 min
-  order_products: OrdersProducts[];
+  // @ManyToOne(() => Order, order => order.order_products)
+  @OneToMany(() => OrdersProducts, order_products => order_products.order, {
+    cascade: true,
+  })
+  order_products: OrdersProducts[]; // 1 ordem pode ter vários produtos
 
+  @CreateDateColumn()
   created_at: Date;
 
+  @UpdateDateColumn()
   updated_at: Date;
 }
 

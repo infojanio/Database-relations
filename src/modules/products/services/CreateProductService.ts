@@ -23,6 +23,7 @@ class CreateProductService {
     const productExists = await this.productsRepository.findByName(name);
 
     if (productExists) {
+      // console.log('Já existe produto com este nome');
       throw new AppError('Já existe um produto com este nome!');
     }
 
@@ -31,6 +32,7 @@ class CreateProductService {
       price,
       quantity,
     });
+    // console.log(product);
     return product;
   }
 }

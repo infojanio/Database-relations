@@ -11,6 +11,7 @@ class CustomersRepository implements ICustomersRepository {
     this.ormRepository = getRepository(Customer);
   }
 
+  // Criação de cliente
   public async create({ name, email }: ICreateCustomerDTO): Promise<Customer> {
     const customer = this.ormRepository.create({
       name,
@@ -22,12 +23,14 @@ class CustomersRepository implements ICustomersRepository {
     return customer;
   }
 
+  // Busca cliente pelo id
   public async findById(id: string): Promise<Customer | undefined> {
     const findCustomer = await this.ormRepository.findOne(id);
 
     return findCustomer;
   }
 
+  // Busca por email
   public async findByEmail(email: string): Promise<Customer | undefined> {
     const findCustomer = await this.ormRepository.findOne({
       where: {
